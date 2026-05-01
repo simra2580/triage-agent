@@ -1,0 +1,3 @@
+HackerRank coding tests may fail to load due to browser issues.
+Candidates should refresh the page or try a different browser.
+Contact recruiter if issue persists.
