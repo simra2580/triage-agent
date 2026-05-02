@@ -88,8 +88,7 @@ class CorpusLoader:
                     "text":    chunk,
                     "source":  source,
                     "section": filename,
-                    "score":   0.0,
-                })
+                    })
             start += CHUNK_SIZE - CHUNK_OVERLAP
         return chunks
 

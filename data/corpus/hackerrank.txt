@@ -1,3 +1,5 @@
-HackerRank coding tests may fail to load due to browser issues.
-Candidates should refresh the page or try a different browser.
-Contact recruiter if issue persists.
+If your HackerRank coding test is not loading, it may be due to browser or connectivity issues. 
+
+Try refreshing the page or accessing the test using a different browser. Avoid switching tabs frequently, as this may affect the test environment.
+
+If the issue persists, please contact the recruiter who shared the test for further assistance.

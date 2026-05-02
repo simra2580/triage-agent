@@ -55,40 +55,43 @@ class Retriever:
 
     # ──────────────────────────────────────────────────────────────────────────
     def search(
-        self,
-        query: str,
-        company_filter: str | None = None,
-        top_k: int = 4,
-    ) -> list[dict]:
-        """
-        Returns top_k most relevant corpus chunks for the query.
+    self,
+    query: str,
+    company_filter: str | None = None,
+    top_k: int = 4,
+) -> list[dict]:
 
-        If company_filter is given, results from that company's domain
-        get a 1.5× relevance boost (soft filter, doesn't exclude others).
-        """
-        query_vec = self.vectorizer.transform([self._clean(query)])
-        scores    = cosine_similarity(query_vec, self.tfidf_matrix).flatten()
+     query_vec = self.vectorizer.transform([self._clean(query)])
+     scores = cosine_similarity(query_vec, self.tfidf_matrix).flatten()
 
-        # Apply company boost
-        if company_filter:
-            aliases = COMPANY_ALIASES.get(company_filter, [])
-            for i, chunk in enumerate(self.corpus):
-                src = chunk.get("source", "").lower()
-                if any(alias in src for alias in aliases):
-                    scores[i] *= 1.5   # boost same-domain chunks
+    # Apply company boost
+     if company_filter:
+        aliases = COMPANY_ALIASES.get(company_filter, [])
+        for i, chunk in enumerate(self.corpus):
+            src = chunk.get("source", "").lower()
+            if any(alias in src for alias in aliases):
+                scores[i] *= 1.5
 
-        # Rank
-        top_indices = np.argsort(scores)[::-1][:top_k]
+    # Sort results
+     top_indices = np.argsort(scores)[::-1][:top_k]
 
-        results = []
-        for idx in top_indices:
-            if scores[idx] > 0:
-                results.append({
-                    **self.corpus[idx],
-                    "score": float(scores[idx]),
-                })
+     results = []
+     for idx in top_indices:
+        score = float(scores[idx])
 
-        return results
+        if score > 0:
+            results.append({
+                "text": self.corpus[idx]["text"],
+                "source": self.corpus[idx]["source"],
+                "section": self.corpus[idx].get("section", ""),
+                "score": score,
+            })
+
+    # 🔴 IMPORTANT fallback
+     if not results:
+        return []
+
+     return results
 
     # ──────────────────────────────────────────────────────────────────────────
     @staticmethod

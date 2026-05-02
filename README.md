@@ -1,28 +1,29 @@
 🧠 Multi-Domain Support Triage Agent
 
-This project is an AI-based system that automatically analyzes and classifies customer support tickets across different domains (HackerRank, Claude, Visa).
+An intelligent system that automatically analyzes and triages customer support tickets across multiple domains — HackerRank, Claude, and Visa — using rule-based risk detection and corpus-driven retrieval.
 
 ---
 
-🚀 What it does
+🚀 Features
 
-- Takes support issues from a CSV file
-- Detects risk level (fraud, account issues, etc.)
-- Classifies the request type
-- Decides whether to:
-  - Reply automatically
+- 📥 Accepts support tickets from a CSV file
+- ⚠️ Detects risk signals (fraud, account issues, urgency)
+- 🔍 Retrieves relevant information from a support corpus
+- 🧠 Classifies request type
+- 🔁 Decides whether to:
+  - Auto-reply
   - Escalate to human support
-- Generates structured output
+- 📊 Outputs structured results in CSV format
 
 ---
 
-🏗️ Architecture
+🏗️ System Architecture
 
 Input (CSV)
    ↓
 Risk Classifier (rule-based)
    ↓
-Retriever (support corpus)
+Corpus Retriever (TF-IDF)
    ↓
 Decision Engine
    ↓
@@ -30,13 +31,22 @@ Output (results.csv)
 
 ---
 
+🛠️ Tech Stack
+
+- Python
+- Pandas
+- Scikit-learn (TF-IDF retrieval)
+- Rule-based NLP
+
+---
+
 ▶️ How to Run
 
-1. Install dependencies:
+1. Install dependencies
 
 pip install -r requirements.txt
 
-2. Run the project:
+2. Run the agent
 
 python main.py
 
@@ -44,7 +54,7 @@ python main.py
 
 📂 Input Format
 
-CSV file should contain:
+The input CSV must contain:
 
 issue,subject,company
 Payment failed,,Visa
@@ -52,20 +62,27 @@ Cannot login,,Claude
 
 ---
 
-📊 Output
+📊 Output Format
 
 The system generates:
 
-- status (replied / escalated)
-- product_area
-- response
-- justification
-- request_type
+- "status" → replied / escalated
+- "product_area"
+- "response"
+- "justification"
+- "request_type"
 
-Saved in:
+Saved to:
 
 output/results.csv
 
+---
+
+🧠 Design Decisions
+
+- Uses rule-based classification for deterministic and reliable evaluation
+- Uses TF-IDF retrieval to ground responses in support documentation
+- Avoids external API dependencies for reproducibility and stability
 
 ---
 

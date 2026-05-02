@@ -1,3 +1,5 @@
-If your payment fails, check your balance or contact your bank.
-For unauthorized transactions, immediately report to your bank.
-Visa does not handle accounts directly.
+If your Visa payment fails, it may be due to insufficient funds, exceeded limits, or bank security checks. Please verify your account balance and card details.
+
+If the issue continues, contact your card-issuing bank for further assistance.
+
+If you notice any unauthorized transactions, report them to your bank immediately to initiate a dispute. Visa does not manage individual accounts directly.
